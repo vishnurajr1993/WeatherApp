@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WeatherApplication</string>
+    <string name="app_name">MyWeather</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="welcome_message">Welcome to Weather App</string>
     <string name="login">Login</string>
@@ -7,4 +7,21 @@
     <string name="password">Password</string>
     <string name="e_mail">Email</string>
     <string name="user_list">User List</string>
+    <string name="create_user">User List</string>
+    <string name="weather_fragment">Weather Info</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">Next</string>
+    <string name="scree_a_subtitle">With our app, you can be able to easily know what to expect on the go, as well as get tips on how to best deal with what is coming your Way.</string>
+    <string name="textview">Create User</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="daily">Daily</string>
+    <string name="weather">Weather</string>
+    <string name="wind">Wind</string>
+    <string name="temp">Temp</string>
+    <string name="humidity">Humidity</string>
+
 </resources>

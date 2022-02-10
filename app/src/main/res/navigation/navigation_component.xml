@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_component"
-    app:startDestination="@id/onBoardingScreenFragment">
+    app:startDestination="@id/splashScreen">
 
     <fragment
         android:id="@+id/onBoardingScreenFragment"
@@ -39,12 +39,24 @@
         android:id="@+id/weatherFragment"
         android:name="com.imperium.weatherapplication.UI.WeatherFragment"
         android:label="fragment_weather"
-        tools:layout="@layout/fragment_weather" />
+        tools:layout="@layout/fragment_weather" >
+        <action
+            app:popUpTo="@+id/userListFragment"
+            app:popUpToInclusive="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            android:id="@+id/action_weatherFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userFormFragment"
         android:name="com.imperium.weatherapplication.UI.UserFormFragment"
         android:label="fragment_user_form"
-        tools:layout="@layout/fragment_user_form" />
+        tools:layout="@layout/fragment_user_form" >
+
+    </fragment>
     <fragment
         android:id="@+id/userListFragment"
         android:name="com.imperium.weatherapplication.UI.UserListFragment"
@@ -60,8 +72,38 @@
             android:id="@+id/action_userListFragment_to_userFormFragment"
             app:destination="@id/userFormFragment" />
         <action
-
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             android:id="@+id/action_userListFragment_to_weatherFragment"
             app:destination="@id/weatherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.imperium.weatherapplication.UI.SplashScreen"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@+id/splashScreen"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_splashScreen_to_onBoardingScreenFragment"
+            app:destination="@id/onBoardingScreenFragment" />
+        <action
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@+id/splashScreen"
+            app:popUpToInclusive="true"
+            android:id="@+id/splash_to_login"
+            app:destination="@id/logInFragment" />
+        <action
+            app:popUpTo="@+id/splashScreen"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            android:id="@+id/action_splashScreen_to_userListFragment"
+            app:destination="@id/userListFragment" />
     </fragment>
 </navigation>

@@ -1,16 +1,22 @@
 package com.imperium.weatherapplication.UI.Adapters
 
+import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.imperium.weatherapplication.R
 import com.imperium.weatherapplication.Room.UserEntity
 import kotlinx.android.synthetic.main.row_item.view.*
+import java.util.*
+
 
 /*
 class UserListRecyclerAdapter {
 }*/
-class UserListRecyclerAdapter : RecyclerView.Adapter<UserListRecyclerAdapter.VH>() {
+class UserListRecyclerAdapter(private val onItemTouchListener: OnItemTouchListener): RecyclerView.Adapter<UserListRecyclerAdapter.VH>() {
     private  var users= mutableListOf<UserEntity>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return VH(parent)
@@ -18,26 +24,47 @@ class UserListRecyclerAdapter : RecyclerView.Adapter<UserListRecyclerAdapter.VH>
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(users[position])
+        holder.itemView.setOnClickListener {
+            onItemTouchListener.onItemViewTap()
+        }
     }
 
     override fun getItemCount(): Int = users.size
 
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(list: List<UserEntity>) {
-        users.addAll(list)
+        if(users.isNotEmpty()) {
+            users.clear()
+        notifyDataSetChanged()
+        }
+        users= list.toMutableList()
         notifyItemInserted(users.size)
     }
 
     fun removeAt(position: Int) {
-        users.removeAt(position)
+       // users.removeAt(position)
         notifyItemRemoved(position)
     }
 
     class VH(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.row_item, parent, false)) {
 
-        fun bind(name: UserEntity) = with(itemView) {
-            first_name.text = name.firstName
+        fun bind(entity: UserEntity) = with(itemView) {
+            first_name.text = entity.firstName
+            last_name.text = entity.lastName
+            email_id.text=entity.email
+            avtar.text=entity.firstName.uppercase().substring(0,1)
+            val rnd = Random()
+            val color: Int = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
+            image_view.circleBackgroundColor=color
+
         }
     }
+
 }
+interface OnItemTouchListener {
+    fun onItemViewTap()
+
+}
+

@@ -3,17 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/avatar_bg.xml" value="0.1155" />
         <entry key="app/src/main/res/drawable/custom_button.xml" value="0.1155" />
         <entry key="app/src/main/res/drawable/custom_et.xml" value="0.1155" />
+        <entry key="app/src/main/res/drawable/ic_baseline_cloud_24.xml" value="0.1155" />
+        <entry key="app/src/main/res/drawable/ic_baseline_cloud_queue_24.xml" value="0.1155" />
+        <entry key="app/src/main/res/drawable/indicator_active.xml" value="0.1155" />
+        <entry key="app/src/main/res/drawable/indicator_inactive.xml" value="0.1155" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/custom_dialog.xml" value="0.2947118123372396" />
         <entry key="app/src/main/res/layout/fragment_log_in.xml" value="0.2654057820638021" />
         <entry key="app/src/main/res/layout/fragment_onboarding_screen.xml" value="0.19781392415364588" />
-        <entry key="app/src/main/res/layout/fragment_user_form.xml" value="0.2421875" />
+        <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.2421875" />
+        <entry key="app/src/main/res/layout/fragment_user_form.xml" value="0.29492492675781246" />
         <entry key="app/src/main/res/layout/fragment_user_list.xml" value="0.10989583333333333" />
-        <entry key="app/src/main/res/layout/fragment_weather.xml" value="0.10989583333333333" />
-        <entry key="app/src/main/res/layout/row_item.xml" value="0.2421875" />
+        <entry key="app/src/main/res/layout/fragment_weather.xml" value="0.30775349934895835" />
+        <entry key="app/src/main/res/layout/row_item.xml" value="0.28290468986384265" />
+        <entry key="app/src/main/res/layout/slide_item_layout.xml" value="0.2421875" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/weather_menu.xml" value="0.2421875" />
       </map>
     </option>
   </component>

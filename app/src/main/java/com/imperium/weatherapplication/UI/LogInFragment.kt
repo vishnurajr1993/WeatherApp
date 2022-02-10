@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
 import androidx.navigation.Navigation
+import com.imperium.weatherapplication.MainActivity
 import com.imperium.weatherapplication.R
 import com.imperium.weatherapplication.Utils.DataState
 import com.imperium.weatherapplication.WeatherAppViewModel
@@ -35,7 +37,8 @@ class LogInFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        (activity as MainActivity?)!!.supportActionBar!!.hide()
+        getActivity()?.getWindow()?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         bindingLogin=FragmentLogInBinding.inflate(inflater,container,false)
         subscribeObservers(bindingLogin.root)
         bindingLogin.btnLogin.setOnClickListener {
@@ -54,7 +57,8 @@ class LogInFragment : Fragment() {
             vm.loginState.collectLatest { dataState ->
                 when(dataState){
                     is DataState.Success<Boolean> -> {
-                        Toast.makeText( activity,"login success", Toast.LENGTH_SHORT).show()
+                        hideProgressbar()
+                        //Toast.makeText( activity,"login success", Toast.LENGTH_SHORT).show()
 //                    displayProgressBar(false)
 //                    appendBlogTitles(dataState.data)
                         GlobalScope.launch(Dispatchers.Main) {
@@ -63,10 +67,11 @@ class LogInFragment : Fragment() {
                         }
                     }
                     is DataState.Error -> {
-                        Toast.makeText( activity,"login error", Toast.LENGTH_SHORT).show()
+                        hideProgressbar()
+                        Toast.makeText( activity,dataState.exception, Toast.LENGTH_SHORT).show()
                     }
                     is DataState.Loading -> {
-                        Toast.makeText( activity,"login loading", Toast.LENGTH_SHORT).show()
+                        showProgressbar()
                     }
                 }
             }
@@ -92,9 +97,14 @@ class LogInFragment : Fragment() {
         })*/
     }
 
+    fun showProgressbar(){
+        bindingLogin.progressBar.visibility=View.VISIBLE
+        bindingLogin.btnLogin.visibility=View.GONE
+    }
+
+    fun hideProgressbar(){
+        bindingLogin.progressBar.visibility=View.GONE
+        bindingLogin.btnLogin.visibility=View.VISIBLE
+    }
+
 }
-fun <T : ViewModel> Fragment.obtainViewModel(owner: ViewModelStoreOwner,
-                                             viewModelClass: Class<T>,
-                                             viewmodelFactory: ViewModelProvider.Factory
-) =
-    ViewModelProvider(owner, viewmodelFactory).get(viewModelClass)

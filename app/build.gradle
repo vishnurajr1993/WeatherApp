@@ -24,6 +24,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        buildTypes.each {
+            it.buildConfigField 'String', 'SecAPIKEY', APIKey
+        }
     }
 
     compileOptions {
@@ -89,6 +92,12 @@ dependencies {
 
     //Serialization
     implementation 'com.google.code.gson:gson:2.8.7'
+
+    implementation 'me.relex:circleindicator:2.1.6'
+
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
 }
 
 kapt {
