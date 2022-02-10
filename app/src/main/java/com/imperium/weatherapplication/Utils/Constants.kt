@@ -15,13 +15,8 @@ const val IS_ON_BOARDING_COMPLETED="is_on_boarding_completed"
 
 const val SCREEN_A_TITLE="View the weather in one easy place."
 const val SCREEN_B_TITLE="Keep your day going with our tips!"
-const val SCREEN_A_SUBTITLE="With our app, you can be able to easily" +
-        "know what to expect on the go, as well as" +
-        "get tips on how to best deal with what's" +
+const val SCREEN_A_SUBTITLE="With our app, you can be able to easily " +
+        "know what to expect on the go, as well as " +
+        "get tips on how to best deal with what's " +
         "coming your Way"
-const val SCREEN_B_SUBTITLE="With the sun. rain etc. comes challenges" +
-        "lout with" +
-        "our special tips to keep your day" +
-        "going," +
-        "vol don't have to worry about anv" +
-        "disruptions"
+const val SCREEN_B_SUBTITLE="Welcome to MyWeather"

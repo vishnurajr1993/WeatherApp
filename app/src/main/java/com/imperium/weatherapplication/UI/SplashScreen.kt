@@ -9,11 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.findNavController
-import com.imperium.weatherapplication.MainActivity
 import com.imperium.weatherapplication.R
-import com.imperium.weatherapplication.WeatherAppViewModel
+import com.imperium.weatherapplication.UI.ViewModels.WeatherAppViewModel
+import com.imperium.weatherapplication.databinding.FragmentSplashScreenBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,26 +21,17 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @DelicateCoroutinesApi
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class SplashScreen : Fragment() {
-    private val vm: WeatherAppViewModel by viewModels()
+class SplashScreen : BaseFragment<FragmentSplashScreenBinding>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun setUpViews() {
+        super.setUpViews()
         (activity as MainActivity?)!!.supportActionBar!!.hide()
-        val view:View=inflater.inflate(R.layout.fragment_splash_screen, container, false)
-
-        observeSplashLiveData(view)
-        return view
     }
 
-
+    override fun observeData() {
+        super.observeData()
+        observeSplashLiveData(binding.root)
+    }
     private fun observeSplashLiveData(view: View) {
         vm.initSplashScreen()
         val observer = Observer<Boolean> {
@@ -61,4 +51,5 @@ class SplashScreen : Fragment() {
         vm.splashTimer.observe(this, observer)
     }
 
+    override fun getViewBinding(): FragmentSplashScreenBinding = FragmentSplashScreenBinding.inflate(layoutInflater)
 }

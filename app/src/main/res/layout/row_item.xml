@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="3dp"
     app:cardCornerRadius="8dp"
-
+    android:layout_marginBottom="4dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,7 +21,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:src="@drawable/avatar_bg"
-        app:civ_circle_background_color="@color/color_primary_dark"
+        app:civ_circle_background_color="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="@+id/email_id"
         app:layout_constraintStart_toStartOf="parent"
 

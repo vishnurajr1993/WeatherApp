@@ -1,23 +1,21 @@
-package com.imperium.weatherapplication
+package com.imperium.weatherapplication.UI.ViewModels
 
 import android.util.Log
 import android.util.Patterns
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.imperium.weatherapplication.BuildConfig
 import com.imperium.weatherapplication.Model.weatherModelToWeatherEntity
 import com.imperium.weatherapplication.Repository.MainRepository
 import com.imperium.weatherapplication.Retrofit.WeatherEntity
 import com.imperium.weatherapplication.Room.UserEntity
 import com.imperium.weatherapplication.Utils.DataState
-import com.imperium.weatherapplication.Utils.EMAIL_REJEX
-import com.imperium.weatherapplication.Utils.SharedPreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import java.lang.Error
 import java.lang.Exception
 
 @ExperimentalCoroutinesApi
@@ -124,7 +122,8 @@ constructor(
             emit(DataState.Loading)
             try {
             val response=mainRepository.getWeather(lattitude = "12.9082847623315",
-            longitude = "77.65197822993314", units = "imperial", apiId = BuildConfig.SecAPIKEY)
+            longitude = "77.65197822993314", units = "imperial", apiId = BuildConfig.SecAPIKEY
+            )
 
                 if(response.isSuccessful){
                     val entity=response.body()?.weatherModelToWeatherEntity()

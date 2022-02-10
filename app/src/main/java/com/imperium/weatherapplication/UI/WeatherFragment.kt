@@ -5,13 +5,10 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.imperium.weatherapplication.MainActivity
 import com.imperium.weatherapplication.R
 import com.imperium.weatherapplication.Utils.DataState
-import com.imperium.weatherapplication.WeatherAppViewModel
-import com.imperium.weatherapplication.databinding.FragmentUserListBinding
+import com.imperium.weatherapplication.UI.ViewModels.WeatherAppViewModel
 import com.imperium.weatherapplication.databinding.FragmentWeatherBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -20,28 +17,29 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @DelicateCoroutinesApi
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class WeatherFragment : Fragment() {
-    private val vm: WeatherAppViewModel by viewModels()
-    private lateinit var bindingWeatherFragment:FragmentWeatherBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+class WeatherFragment : BaseFragment<FragmentWeatherBinding>() {
+
+
+
+    override fun setUpAppbar() {
+        super.setUpAppbar()
         setHasOptionsMenu(true)
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.weather_menu,menu)
     }
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+
+    override fun setUpViews() {
+        super.setUpViews()
         (activity as MainActivity?)!!.supportActionBar!!.show()
         (activity as MainActivity?)!!.supportActionBar!!.title = getString(R.string.weather_fragment)
         (activity as MainActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        bindingWeatherFragment= FragmentWeatherBinding.inflate(inflater,container,false)
-        setUpObserver()
-        return bindingWeatherFragment.root
     }
 
+    override fun observeData() {
+        super.observeData()
+        setUpObserver()
+    }
     private fun setUpObserver() {
         vm.getWeather().observe(this, Observer { state->
             state?.let {resource->
@@ -49,10 +47,13 @@ class WeatherFragment : Fragment() {
                     is DataState.Success->{
                         hideProgressBar()
                         print(resource.data.humidity.toString() +"isHumid")
-                        bindingWeatherFragment.temperature.text=resource.data.temperature.toString()+" °F"
-                        bindingWeatherFragment.humidity.text=resource.data.humidity.toString()+" %"
-                        bindingWeatherFragment.windSpeed.text=resource.data.windSpeed.toString()+" mph"
-                        bindingWeatherFragment.type.text=resource.data.weatherType.toString()
+                        binding.apply {
+
+                            temperature.text=resource.data.temperature.toString()+" °F"
+                            humidity.text=resource.data.humidity.toString()+" %"
+                            windSpeed.text=resource.data.windSpeed.toString()+" mph"
+                            type.text=resource.data.weatherType.toString()
+                        }
                     }
                     is DataState.Error->{
                         showProgressBar()
@@ -79,14 +80,22 @@ class WeatherFragment : Fragment() {
         }
     }
     fun showProgressBar(){
-        bindingWeatherFragment.type.visibility=View.GONE
-        bindingWeatherFragment.container.visibility=View.GONE
-        bindingWeatherFragment.progressBar.visibility=View.VISIBLE
+        binding.apply {
+            type.visibility=View.GONE
+            container.visibility=View.GONE
+            progressBar.visibility=View.VISIBLE
+        }
+
     }
     fun hideProgressBar(){
-        bindingWeatherFragment.type.visibility=View.VISIBLE
-        bindingWeatherFragment.container.visibility=View.VISIBLE
-        bindingWeatherFragment.progressBar.visibility=View.GONE
+        binding.apply {
+            type.visibility=View.VISIBLE
+            container.visibility=View.VISIBLE
+            progressBar.visibility=View.GONE
+        }
+
     }
+
+    override fun getViewBinding(): FragmentWeatherBinding = FragmentWeatherBinding.inflate(layoutInflater)
 
 }

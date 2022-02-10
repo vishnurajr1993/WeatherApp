@@ -1,4 +1,4 @@
-package com.imperium.weatherapplication
+package com.imperium.weatherapplication.UI
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

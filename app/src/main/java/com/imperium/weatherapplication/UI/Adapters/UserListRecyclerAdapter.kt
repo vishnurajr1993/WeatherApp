@@ -55,9 +55,8 @@ class UserListRecyclerAdapter(private val onItemTouchListener: OnItemTouchListen
             last_name.text = entity.lastName
             email_id.text=entity.email
             avtar.text=entity.firstName.uppercase().substring(0,1)
-            val rnd = Random()
-            val color: Int = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
-            image_view.circleBackgroundColor=color
+
+
 
         }
     }

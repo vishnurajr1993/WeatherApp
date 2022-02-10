@@ -28,10 +28,7 @@ class MainRepository
     }
 
     suspend fun login(userName:String,password:String  ): Flow<DataState<Boolean>> = flow {
-        Log.d("llllls", "login: ")
         emit(DataState.Loading)
-        delay(1000)// mimic network delay for showing loader
-
         try{
             if(userName.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(userName).matches()){
                 emit(DataState.Error(userNameValidationError))
@@ -39,6 +36,7 @@ class MainRepository
                 emit(DataState.Error(passwordValidationError))
             }else if(userName.equals("testapp@google.com") &&
                 password.equals("Test@123456")){
+                delay(1000)// mimic network delay for showing loader
                 setUserLoggedIn(true)
                 emit(DataState.Success(data = true))
 
