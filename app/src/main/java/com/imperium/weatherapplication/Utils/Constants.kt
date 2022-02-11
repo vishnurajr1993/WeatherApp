@@ -1,7 +1,5 @@
 package com.imperium.weatherapplication.Utils
 
-const val BASE_URL="https://api.openweathermap.org/data/2.5/"
-
 const val PREFERENCE_NAME="weather_app_pref"
 const val userNameValidationError="Username is not valid"
 const val passwordValidationError="Password is not valid"

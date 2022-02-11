@@ -121,7 +121,7 @@ constructor(
         return liveData(Dispatchers.IO) {
             emit(DataState.Loading)
             try {
-            val response=mainRepository.getWeather(lattitude = "12.9082847623315",
+            val response=mainRepository.getWeather(latitude = "12.9082847623315",
             longitude = "77.65197822993314", units = "imperial", apiId = BuildConfig.SecAPIKEY
             )
 

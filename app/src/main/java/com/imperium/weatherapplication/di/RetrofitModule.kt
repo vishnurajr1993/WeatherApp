@@ -2,8 +2,9 @@ package com.imperium.weatherapplication.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.imperium.weatherapplication.BuildConfig
 import com.imperium.weatherapplication.Retrofit.WeatherRetrofit
-import com.imperium.weatherapplication.Utils.BASE_URL
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,7 +32,7 @@ object RetrofitModule {
     @Provides
     fun provideRetrofit(gson:  Gson): Retrofit.Builder {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BaseUrl)
             .addConverterFactory(GsonConverterFactory.create(gson))
     }
 

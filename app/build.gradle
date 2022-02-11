@@ -26,6 +26,8 @@ android {
         }
         buildTypes.each {
             it.buildConfigField 'String', 'SecAPIKEY', APIKey
+            it.buildConfigField 'String', 'BaseUrl', BASEURL
+
         }
     }
 

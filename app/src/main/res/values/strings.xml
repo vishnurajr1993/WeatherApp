@@ -23,5 +23,6 @@
     <string name="wind">Wind</string>
     <string name="temp">Temp</string>
     <string name="humidity">Humidity</string>
+    <string name="logout">Logout</string>
 
 </resources>

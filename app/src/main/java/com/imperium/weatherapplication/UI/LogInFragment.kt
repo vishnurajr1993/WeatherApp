@@ -13,6 +13,8 @@ import androidx.navigation.Navigation
 import com.imperium.weatherapplication.R
 import com.imperium.weatherapplication.Utils.DataState
 import com.imperium.weatherapplication.UI.ViewModels.WeatherAppViewModel
+import com.imperium.weatherapplication.Utils.passwordValidationError
+import com.imperium.weatherapplication.Utils.userNameValidationError
 import com.imperium.weatherapplication.databinding.FragmentLogInBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
@@ -52,6 +54,12 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
                     }
                     is DataState.Error -> {
                         hideProgressbar()
+                        if(dataState.exception==userNameValidationError){
+                            binding.etEmail.error=userNameValidationError
+                        }
+                        if(dataState.exception==passwordValidationError){
+                            binding.etPassword.error=passwordValidationError
+                        }
                         Toast.makeText( activity,dataState.exception, Toast.LENGTH_SHORT).show()
                     }
                     is DataState.Loading -> {
@@ -65,7 +73,6 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
 
     private fun showProgressbar(){
         binding.apply {
-
             progressBar.visibility=View.VISIBLE
             btnLogin.visibility=View.GONE
         }
@@ -73,7 +80,6 @@ class LogInFragment : BaseFragment<FragmentLogInBinding>() {
 
     private fun hideProgressbar(){
         binding.apply {
-
             progressBar.visibility=View.GONE
             btnLogin.visibility=View.VISIBLE
         }

@@ -73,12 +73,12 @@ class MainRepository
         sharedPref.setIsLoggedIn(isLoggedIn)
     }
 
-    suspend fun getWeather(lattitude:String,
+    suspend fun getWeather(latitude:String,
                            longitude:String,
                            units:String,
                            apiId:String):Response<WeatherModel>{
         return weatherRetrofit
-            .getWeather(latitude = lattitude,
+            .getWeather(latitude = latitude,
                 longitude = longitude,
                 units = units, appId = apiId)
     }
